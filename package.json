@@ -1,0 +1,19 @@
+{
+  "name": "qs",
+  "version": "1.0.0",
+  "description": "Test task for Qualium Systems",
+  "main": "sever.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo No tests yet..."
+  },
+  "author": "evk",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "mongoose": "^4.5.9",
+    "morgan": "^1.7.0"
+  }
+}
