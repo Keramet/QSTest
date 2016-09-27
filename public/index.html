@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  ng-app="qsApp">
 <head>
     <meta charset="UTF-8">
     <title>QS Test</title>
@@ -7,47 +7,49 @@
     <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
 
+    <script src="libs/jquery/dist/jquery.js"></script>
     <script src="libs/angular/angular.js"></script>
     <script src="libs/angular-route/angular-route.js"></script>
     <script src="libs/angular-resource/angular-resource.js"></script>
 </head>
 
-<body ng-app="qsApp" ng-cloak>
+<body ng-cloak>
     
+    <!--  Need to substitue navbar with directive  -->
     <div class="row">
-  
-<nav class="navbar navbar-static-top navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a href="#/" class="navbar-brand">
-        <span class="glyphicon glyphicon-home"></span>
-        QSTest
-      </a>
-    </div>
+      <nav class="navbar navbar-static-top navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a href="#/" class="navbar-brand">
+              <span class="glyphicon glyphicon-home"></span>
+              QSTest
+            </a>
+          </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
-      <ul class="nav navbar-nav">
-        <li>
-          <a ui-sref="config">
-            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-            Настройки
-          </a>
-        </li>
-      </ul>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+            <ul class="nav navbar-nav">
+              <li>
+                <a href="#/login">
+                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                  Log In
+                </a>
+              </li>
+            </ul>
 
-    </div>
-  </div>
-</nav>
-
+          </div>
+        </div>
+      </nav>
     </div>
 
 
     <ng-view></ng-view>
     
-    <script src="js/config.js"></script>
-    <script src="js/controllers.js"></script>
-    <script src="js/directives.js"></script>
+    
     <script src="js/app.js"></script>
-
+    <script src="js/config.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/logreg.ctrl.js"></script>
+    <script src="js/table.ctrl.js"></script>
+    <script src="js/single.ctrl.js"></script>
 </body>
 </html>

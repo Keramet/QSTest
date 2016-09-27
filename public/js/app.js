@@ -8,50 +8,45 @@
             'ngResource'
         ])
 
-        .config([
-            '$routeProvider',
-            config
-        ])
-
-        .constant( 'baseUrl', 'http://localhost:3000/user/:id')
-
-        .factory( 'User', [
-            '$resource', 
-            'baseUrl', 
-            userFac
-        ])
-
-        .controller( 'mainCtrl', [
+        .run([
+            '$rootScope',
             '$location',
-            'User',
-            mainCtrl
+            'AuthService',
+            'AUTH_STATUS',
+            onRun
         ])
 
-        .controller( 'singleCtrl', [
-            '$location',
-            '$routeParams',
-            '$scope',
-            'User',
-            singleCtrl
-        ])
+        .constant( 'baseUrl', 'http://localhost:3000/user/:id' )
 
-        // .controller( 'editCtrl', [
-        //     '$location',
-        //     '$routeParams',
-        //     '$scope',
-        //     'User',
-        //     editCtrl
-        // ])
+        .constant( 'API_URL', 'http://localhost:3000/api' )
+
+        .constant( 'AUTH_STATUS', {
+            notAuth: 'user-not-authonticated'
+        })
+
     ;
 
+//---------------------------------------//
 
-// functions implementation...
-    
-
-    function userFac ($resource, baseUrl) {
-        return $resource( baseUrl );
+    function onRun ($rootScope, $location, AuthService, AUTH_STATUS) {
+        $rootScope.$on( '$locationChangeStart', (event, newUrl, oldUrl) => {
+            let protocol = $location.protocol(),
+                host     = $location.host(),
+                port     = $location.port(),
+                url      = `${protocol}://${host}:${port}/#/`,
+                urlLog   = url + 'login',
+                urlReg   = url + 'register';
+            
+            if ( !AuthService.isAuth() ) {
+                if ( newUrl !== urlLog && newUrl !== urlReg ) {
+                    event.preventDefault();
+                    $location.path('/login');
+                }
+            }
+        });
+        
     }
-
+    
 
 
 })();

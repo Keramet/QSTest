@@ -1,17 +1,30 @@
 <div class="container">
-    <h2>{{ isNew() ? "Add new user" : "Update user info" }}</h2>
+    <h2>{{ sc.isNew() ? "Add new user" : "Update user info" }}</h2>
 
     <hr>
 
-    <div class="form-inline">
-        <label>Name:</label>
-        <input type="text" ng-model="sc.user.name" class="form-control">
+    <div class="row">
+        <div class="col-sm-3">
+           <label>Name:</label>
+            <input type="text" ng-model="sc.user.name" class="form-control"> 
+        </div>
 
-        <label>Age:</label>
-        <input type="text" ng-model="sc.user.age" class="form-control">
+        <div class="col-sm-3">
+            <label>Phone:</label>
+            <input type="text" ng-model="sc.user.phone" class="form-control">
+        </div>
 
-        <label>ID:</label> 
-        <input type="text" ng-model="sc.user._id" class="form-control" disabled>      
+        <div class="col-sm-3">
+            <label>E-mail:</label>
+            <input type="text" ng-model="sc.user.emil" class="form-control">
+        </div>
+
+        <div class="col-sm-3">
+            <label>Age:</label>
+            <input type="text" ng-model="sc.user.age" class="form-control">
+        </div>
+         
+  
     </div>
     <br>
 
@@ -22,12 +35,12 @@
             class="glyphicon glyphicon-plus"
             aria-hidden="true">
         </span>
-        {{ isNew() ? "Create" : "Update" }}
+        {{ sc.isNew() ? "Create" : "Update" }}
     </button>
 
     <button
-        ng-click="sc.user = {}"
-        ng-disabled="!isNew()"
+        ng-click="sc.client = {}"
+        ng-disabled="!sc.isNew()"
         class="btn btn-primary">
         <span 
             class="glyphicon glyphicon glyphicon-erase"
@@ -45,5 +58,6 @@
         </span>
         Cancel
     </button>
+    <br>
 
 </div>

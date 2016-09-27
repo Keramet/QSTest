@@ -1,33 +1,39 @@
 'use strict';
-const http       = require('http')
-    , express    = require('express')
-    , logger     = require('morgan')
-    , bodyParser = require('body-parser')
+const http        = require('http')
+    , express     = require('express')
+    , path        = require('path')
 
-    , userRoute  = require('./routes/user')
-    , errHandler = require('./errors/error-handling')
-    , db         = require('./db/mongoConf')
+    , logger      = require('morgan')
+    , bodyParser  = require('body-parser')
+    , passport    = require('passport')
 
-    , PORT       =  process.env.PORT || 3000
-    , app        = express()
-    , server     = http.createServer(app)
-    ;
+    , apiRoute    = require('./routes/api')
+    , errHandler  = require('./config/error-handling')
+    , DB          = require('./config/mongoConf')
 
+    , PORT        = process.env.PORT || 3000
+    , app         = express()
+    , server      = http.createServer(app)
+;
 
 app.set( 'port', PORT );
 
-app.use( express.static(__dirname + '/public') );
-app.use( '/libs', express.static(__dirname + '/bower_components') ); 
+app.use( express.static(path.join(__dirname, 'public')) );
+app.use( '/libs', express.static(path.join(__dirname, 'bower_components')) ); 
 
 app.use( logger('dev') );
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded({ extended: true }) );
 
-app.use( '/user', userRoute ); 
+app.use( passport.initialize() );
+require('./config/passport')(passport);
+
+app.use( '/api',  apiRoute  ); 
 
 app.use( errHandler.get404 ); 
 app.use( errHandler.onError );
 
-server.listen(PORT, () => console.log('Listen server on port ' + PORT) );
+server.listen( PORT, ()=> console.log(`Server 'localhost' is listening on port....... [ ${PORT} ]`) );
 
-// module.exports = server;
+
+module.exports = server;

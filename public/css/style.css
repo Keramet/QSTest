@@ -1,6 +1,17 @@
 caption {
-    font-style: initial;
+    font-style: italic;
+    height: 40px;
 }
+    caption input {
+        float: right;
+        max-width: 300px;
+    }
+    caption button {
+        float: right;
+        max-width: 100px;
+    }
+
+
 
 td:last-child {
     text-align: right;

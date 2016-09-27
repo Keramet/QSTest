@@ -1,8 +1,8 @@
 'use strict';
 const  express  = require('express')
     ,  router   = express.Router()
-    ,  ErrorAPI = require('../errors/error-handling').ErrorAPI
-    ,  User     = require('../db/userModel')
+    ,  ErrorAPI = require('../config/error-handling').ErrorAPI
+    ,  User     = require('../config/userModel')
     ;
 
 
@@ -26,11 +26,13 @@ router.get( '/:id', (req, res, next) => {
 
 router.post( '/', (req, res, next) => {
     let name = req.body.name,
+        pass = req.body.password,
         age  = req.body.age;
 
     User.create({
-        name: name,
-        age:  age
+        name:     name,
+        password: pass,
+        age:      age
     }, (err, user) => {
         if (err) { next(err); }
 
@@ -46,11 +48,13 @@ router.post( '/', (req, res, next) => {
 router.post( '/:id', (req, res, next) => {
     let id   = req.params.id,
         name = req.body.name,
+        pass = req.body.password,
         age  = req.body.age,
         changes = {};
 
-    if (name) { changes.name = name; }
-    if (age)  { changes.age  = age;  }
+    if (name) { changes.name     = name; }
+    if (pass) { changes.password = pass; }
+    if (age)  { changes.age      = age;  }
 
     User.findByIdAndUpdate( id, changes, {new: true}, (err, user) => {
         if (err) { next(err); }

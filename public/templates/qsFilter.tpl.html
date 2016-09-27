@@ -1,0 +1,25 @@
+<div class="qsfilter">
+    
+  <form role="form" class="form-inline">
+    {{ caption | uppercase }} 
+
+    <input
+        ng-model   ="filter"
+        ng-if      ="show"    
+        class      ="form-control"
+        type       ="text"
+        placeholder="filter...">
+
+    <button
+        ng-click="click()"
+        class   ="btn form-inline"
+        ng-class="{'btn-info' : show, 'btn-default' : !show}"
+        title   ="{{show ? 'Filter OFF' : 'User filter'}}">
+        <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+    </button>
+  </form>
+
+<!--   {{filter}} <br>
+  {{show}} -->
+
+</div>

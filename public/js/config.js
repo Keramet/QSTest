@@ -1,27 +1,50 @@
+(function () {
+    'use strict';
 
-function config ($routeProvider) {
-    console.log('run config...');
+    angular
+        .module( 'qsApp' )
+        
+        .config([
+            '$routeProvider',
+            '$httpProvider',
+            config
+        ])
+    ;
 
-    $routeProvider
-        .when('/', {
-            templateUrl : 'templates/table.tpl.html',
-            controller  : 'mainCtrl as mc'
-        })
+//-------------------------------------------------------
 
-        .when('/single', {
-            templateUrl : 'templates/single.tpl.html',
-            controller  : 'singleCtrl as sc'
-        })
+    function config ($routeProvider, $httpProvider) {
 
-        .when('/single/:id', {
-            templateUrl : 'templates/single.tpl.html',
-            controller  : 'singleCtrl as sc'
-        })
+        $httpProvider.interceptors.push('AuthInterceptor');
+        
+        $routeProvider
+            .when( '/', {
+                templateUrl : 'templates/table.tpl.html',
+                controller  : 'tableCtrl as tc'
+            })
 
-        .when('/login', {
-            templateUrl : 'templates/login.tpl.html',
-            controller  : 'loginCtrl as lc'
-        })
+            .when( '/single', {
+                templateUrl : 'templates/single.tpl.html',
+                controller  : 'singleCtrl as sc'
+            })
 
-        .otherwise( {redirectTo: '/'} );
-}
+            .when( '/single/:id', {
+                templateUrl : 'templates/single.tpl.html',
+                controller  : 'singleCtrl as sc'
+            })
+
+            .when( '/login', {
+                templateUrl : 'templates/login.tpl.html',
+                controller  : 'logRegCtrl as lc'
+            })
+
+            .when( '/register', {
+                templateUrl : 'templates/login.tpl.html',
+                controller  : 'logRegCtrl as lc'
+            })
+            .otherwise( {redirectTo: '/'} )
+        ;
+
+    }//end of  config
+
+})();
