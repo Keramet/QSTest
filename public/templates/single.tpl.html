@@ -1,27 +1,27 @@
 <div class="container">
-    <h2>{{ sc.isNew() ? "Add new user" : "Update user info" }}</h2>
+    <h2>{{ sc.isNew() ? "Add new client" : "Update client info" }}</h2>
 
     <hr>
 
     <div class="row">
         <div class="col-sm-3">
            <label>Name:</label>
-            <input type="text" ng-model="sc.user.name" class="form-control"> 
+            <input type="text" ng-model="sc.client.name" class="form-control"> 
         </div>
 
         <div class="col-sm-3">
             <label>Phone:</label>
-            <input type="text" ng-model="sc.user.phone" class="form-control">
+            <input type="text" ng-model="sc.client.phone" class="form-control">
         </div>
 
         <div class="col-sm-3">
             <label>E-mail:</label>
-            <input type="text" ng-model="sc.user.emil" class="form-control">
+            <input type="text" ng-model="sc.client.email" class="form-control">
         </div>
 
         <div class="col-sm-3">
             <label>Age:</label>
-            <input type="text" ng-model="sc.user.age" class="form-control">
+            <input type="text" ng-model="sc.client.age" class="form-control">
         </div>
          
   
@@ -31,9 +31,7 @@
     <button
         ng-click="sc.addUpdate()"
         class="btn btn-success">
-        <span 
-            class="glyphicon glyphicon-plus"
-            aria-hidden="true">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true">
         </span>
         {{ sc.isNew() ? "Create" : "Update" }}
     </button>
@@ -42,9 +40,7 @@
         ng-click="sc.client = {}"
         ng-disabled="!sc.isNew()"
         class="btn btn-primary">
-        <span 
-            class="glyphicon glyphicon glyphicon-erase"
-            aria-hidden="true">
+        <span class="glyphicon glyphicon glyphicon-erase" aria-hidden="true">
         </span>
         Clear
     </button>
@@ -52,12 +48,9 @@
     <button
         ng-click="sc.toList()"
         class="btn btn-danger">
-        <span 
-            class="glyphicon glyphicon-remove-circle"
-            aria-hidden="true">
+        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true">
         </span>
         Cancel
     </button>
     <br>
-
 </div>

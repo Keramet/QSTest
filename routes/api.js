@@ -88,6 +88,8 @@ router.get( '/info',
     }
 );
 
+//---------  User routes  ---------//
+
 router.get( '/users',
     passport.authenticate( 'jwt', {session: false} ),
     checkAuth,
@@ -112,11 +114,18 @@ router.delete( '/users/:id',
     deleteOneUser
 );
 
+//---------  Client routes  ---------//
 
 router.get( '/clients',
     passport.authenticate( 'jwt', {session: false} ),
     checkAuth,
     getAllClients
+);
+
+router.get( '/clients/:id',
+    passport.authenticate( 'jwt', {session: false} ),
+    checkAuth,
+    getOneClient
 );
 
 router.post( '/clients',
@@ -125,6 +134,11 @@ router.post( '/clients',
     createClient
 );
 
+router.post( '/clients/:id',
+    passport.authenticate( 'jwt', {session: false} ),
+    checkAuth,
+    updateClient
+);
 
 router.delete( '/clients/:id',
     passport.authenticate( 'jwt', {session: false} ),
@@ -145,7 +159,7 @@ function getToken (headers) {
         parts = headers.authorization.split(' ');
 
         if (parts.length === 2) { return parts[1]; }
-        else                    { return null;      }
+        else                    { return null;     }
 
     } else { return null; }
 }
@@ -241,6 +255,27 @@ function getAllClients (req, res, next) {
     });
 }
 
+function getOneClient (req, res, next) {
+    Client.findOne( {_id: req.params.id}, (err, data) => {
+        if (err) { next(err); }
+
+        res.json(data); 
+    });
+}
+
+function updateClient (req, res, next) {
+    let id      = req.params.id,
+        changes =  {  name: req.body.name,
+                    phone: req.body.phone,
+                    email: req.body.email,
+                      age: req.body.age  };
+
+    Client.findByIdAndUpdate( id, changes, {new: true}, (err, data) => {
+        if (err) { next(err); }
+
+        res.json(data); 
+    });
+}
 
 function deleteOneClient( req, res, next) {
     Client.remove( {_id: req.params.id}, (err, data) => {

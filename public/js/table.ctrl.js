@@ -8,6 +8,7 @@
             '$http',
             '$location',
             '$timeout',
+            '$window',
             'AuthService',
             'API_URL',
             tableCtrl
@@ -15,7 +16,7 @@
     ;
 
 
-    function tableCtrl ($http, $location, $timeout, AuthService, API_URL) {
+    function tableCtrl ($http, $location, $timeout, $window, AuthService, API_URL) {
         let tc  = this;
      
         tc.destroySession = function () {
@@ -33,7 +34,7 @@
         tc.filterValue = '';  
         tc.filter = function () {
             tc.filterValue = '';     
-            $timeout( () => angular.element("#qsFilter").focus(), 0 ); 
+            $timeout( ()=> $window.document.getElementById("qsFilter").focus(), 0 );
 
             return tc.filterON = !tc.filterON;     
         }
