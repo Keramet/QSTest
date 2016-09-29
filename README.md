@@ -1,3 +1,4 @@
-#### Test task for Qualium Systems
+#### User auth - JWT.
 
-P.S.  You need to launch `mongod`
+You need to launch `mongod`
+Run app: `npm start`  (use 'nodemon')
