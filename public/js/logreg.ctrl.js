@@ -31,7 +31,7 @@
             authAction    = AuthService.login;
         } else {
             lc.isNew      = true;
-            lc.img        = 'http://www.iconsdb.com/icons/preview/caribbean-blue/add-user-2-xxl.png';
+            lc.img        = 'https://www.convergent-design.com/images/icon-new-user.png';
             lc.caption    = 'Register in QSTest';
             lc.btnCaption = 'Register';
             lc.placeholder= 'New User';

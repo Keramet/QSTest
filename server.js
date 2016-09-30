@@ -1,19 +1,19 @@
 'use strict';
-const http        = require('http')
-    , express     = require('express')
-    , path        = require('path')
+const http      = require('http'),
+    express     = require('express'),
+    path        = require('path'),
 
-    , logger      = require('morgan')
-    , bodyParser  = require('body-parser')
-    , passport    = require('passport')
+    logger      = require('morgan'),
+    bodyParser  = require('body-parser'),
+    passport    = require('passport'),
 
-    , apiRoute    = require('./routes/api')
-    , errHandler  = require('./config/error-handling')
-    , DB          = require('./config/mongoConf')
+    apiRoute    = require('./routes/api'),
+    errHandler  = require('./config/error-handling'),
+    DB          = require('./config/mongoConf'),
 
-    , PORT        = process.env.PORT || 3000
-    , app         = express()
-    , server      = http.createServer(app)
+    app         = express(),
+    server      = http.createServer( app ),
+    PORT        = process.env.PORT || 3000
 ;
 
 app.set( 'port', PORT );
