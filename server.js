@@ -16,6 +16,8 @@ const http      = require('http'),
     PORT        = process.env.PORT || 3000
 ;
 
+// DB.check( app );
+
 app.set( 'port', PORT );
 
 app.use( express.static(path.join(__dirname, 'public')) );
@@ -28,7 +30,16 @@ app.use( bodyParser.urlencoded({ extended: true }) );
 app.use( passport.initialize() );
 require('./config/passport')(passport);
 
-app.use( '/api',  apiRoute  ); 
+// app.use( (req, res, next) => {
+//     console.log( 'isDB: ', app.get('isDB') );
+//     if ( app.get('isDB') ) {
+//         next('No DB!'); 
+//     } else {
+//         next(); 
+//     }
+// });
+
+app.use( '/api',  apiRoute ); 
 
 app.use( errHandler.get404 ); 
 app.use( errHandler.onError );

@@ -17,22 +17,20 @@
         let lc = this,
             authAction;
 
-        lc.user = {
-            name: '',
-            password: ''
-        };
+        lc.user = { name: '',
+                password: ''  };
 
         if ( $location.path() === '/login' ) {
             lc.isNew      = false;
             lc.img        = "https://en.opensuse.org/images/0/0b/Icon-user.png"
-            lc.caption    = 'Log IN to QSTest';
+            lc.caption    = 'LogIN to UApp';
             lc.btnCaption = 'Login';
             lc.placeholder= 'User name';
             authAction    = AuthService.login;
         } else {
             lc.isNew      = true;
             lc.img        = 'https://www.convergent-design.com/images/icon-new-user.png';
-            lc.caption    = 'Register in QSTest';
+            lc.caption    = 'Register in UApp';
             lc.btnCaption = 'Register';
             lc.placeholder= 'New User';
             authAction    = AuthService.register;

@@ -1,4 +1,4 @@
 #### User auth - JWT.
 
-You need to launch `mongod`
-run app - `npm start`  (need global 'nodemon' and 'bower')
+You need to launch `mongod`.
+Run app: `npm start`  (need global <i>nodemon</i> and <i>bower</i>).
